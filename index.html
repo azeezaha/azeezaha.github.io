@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Azeezah Agboola — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --coral:    #f7645a;
+      --coral-lt: #fff0ef;
+      --ink:      #1a1a2e;
+      --ink2:     #3d3d56;
+      --mid:      #8888a8;
+      --rule:     #e8e8f0;
+      --bg:       #ffffff;
+      --max:      680px;
+      --pad:      clamp(1.5rem, 5vw, 3.5rem);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--coral); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible { outline: 2px solid var(--coral); outline-offset: 3px; border-radius: 2px; }
+
+    /* NAV */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+      padding: 0 var(--pad);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-name {
+      font-family: 'Fraunces', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .nav-name:hover { text-decoration: none; }
+    .nav-dot {
+      width: 7px; height: 7px;
+      background: var(--coral);
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--mid); transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); text-decoration: none; }
+
+    .menu-btn {
+      display: none; background: none; border: none;
+      cursor: pointer; padding: 0.25rem; color: var(--ink);
+    }
+
+    .mobile-nav {
+      display: none; position: fixed;
+      top: 64px; left: 0; right: 0;
+      background: var(--bg); border-bottom: 1px solid var(--rule);
+      padding: 0.5rem var(--pad); z-index: 99;
+      flex-direction: column;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--mid); padding: 0.85rem 0;
+      border-bottom: 1px solid var(--rule); display: block;
+    }
+    .mobile-nav a:last-child { border-bottom: none; }
+    .mobile-nav a:hover { color: var(--ink); text-decoration: none; }
+
+    /* PAGE */
+    .page {
+      max-width: calc(var(--max) + calc(var(--pad) * 2));
+      margin: 0 auto;
+      padding: 0 var(--pad);
+    }
+
+    section { padding: 6rem 0; border-bottom: 1px solid var(--rule); }
+    section:last-of-type { border-bottom: none; }
+
+    .eyebrow {
+      display: block; font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--coral); margin-bottom: 1.75rem;
+    }
+
+    .eyebrow-contact{
+        margin-bottom: 0%;
+        display: block; font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--coral);
+    }
+
+    /* HERO */
+    #home { padding-top: 7rem; padding-bottom: 7rem; }
+
+    .hero-greeting {
+      display: block; font-size: 1rem;
+      color: var(--mid); margin-bottom: 1.1rem;
+    }
+
+    .hero-name {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 600; line-height: 1.0;
+      letter-spacing: -0.025em; color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-name .hi {
+      position: relative; white-space: nowrap;
+    }
+    .hero-name .hi::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: 4px;
+      height: 5px; width: 0;
+      background: var(--coral);
+      border-radius: 2px;
+      animation: draw 0.65s cubic-bezier(.4,0,.2,1) forwards 0.5s;
+    }
+    @keyframes draw { to { width: 100%; } }
+
+    .hero-tagline {
+      font-size: 1.15rem; color: var(--ink2);
+      font-weight: 300; max-width: 500px;
+      line-height: 1.6; margin-bottom: 0.85rem;
+    }
+
+    .hero-sub {
+      font-size: 0.97rem; color: var(--mid);
+      max-width: 460px; line-height: 1.8;
+    }
+
+    .hero-btns { display: flex; gap: 0.85rem; margin-top: 2.5rem; flex-wrap: wrap; }
+
+    .btn-fill {
+      display: inline-block;
+      background: var(--coral); color: #fff;
+      font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.75rem 1.5rem; border-radius: 4px;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .btn-fill:hover { opacity: 0.87; text-decoration: none; transform: translateY(-1px); }
+
+    .btn-outline {
+      display: inline-block;
+      background: transparent; color: var(--ink);
+      font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.75rem 1.5rem; border-radius: 4px;
+      border: 1.5px solid var(--rule);
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .btn-outline:hover { border-color: var(--mid); text-decoration: none; transform: translateY(-1px); }
+
+    /* ABOUT */
+    #about p { font-size: 1.05rem; color: var(--ink2); line-height: 1.85; max-width: var(--max); }
+
+    /* EDUCATION */
+    .edu-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.75rem; }
+    .edu-degree { font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 600; color: var(--ink); letter-spacing: -0.01em; line-height: 1.2; }
+    .edu-school { font-size: 0.93rem; color: var(--coral); margin-top: 0.3rem; font-weight: 500; }
+    .edu-year { font-size: 0.8rem; color: var(--mid); letter-spacing: 0.05em; white-space: nowrap; padding-top: 0.3rem; }
+
+    .cw-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); margin-bottom: 0.75rem; display: block; }
+    .pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .pill {
+      font-size: 0.8rem; color: var(--ink2);
+      background: var(--coral-lt);
+      border: 1px solid rgba(247,100,90,0.2);
+      padding: 0.3rem 0.85rem; border-radius: 100px; line-height: 1.4;
+    }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; max-width: var(--max); }
+    .sk-title { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--coral); margin-bottom: 0.85rem; display: block; }
+    .sk-col ul { list-style: none; }
+    .sk-col ul li { font-size: 0.93rem; color: var(--ink2); padding: 0.2rem 0; }
+    .skills-note { margin-top: 2rem; font-size: 0.9rem; color: var(--mid); font-style: italic; }
+
+    /* PROJECTS */
+    .project { padding: 2.25rem 0; border-bottom: 1px solid var(--rule); }
+    .project:first-child { padding-top: 0; }
+    .project:last-child { border-bottom: none; padding-bottom: 0; }
+    .project-top { display: flex; justify-content: space-between; align-items: baseline; gap: 1.5rem; margin-bottom: 0.6rem; }
+    .project-name { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600; color: var(--ink); letter-spacing: -0.01em; }
+    .project-yr { font-size: 0.78rem; color: var(--mid); letter-spacing: 0.05em; flex-shrink: 0; }
+    .project-desc { font-size: 0.95rem; color: var(--ink2); line-height: 1.75; max-width: var(--max); }
+
+    /* CONTACT */
+    .contact-intro { font-size: 1.05rem; color: var(--ink2); max-width: var(--max); margin-bottom:1.0rem; line-height: 1.8; }
+    .contact-list { display: flex; flex-direction: column; gap: 1.1rem; margin-bottom: 2.5rem; }
+    .c-row { display: flex; align-items: baseline; gap: 1.5rem; }
+    .c-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); min-width: 72px; flex-shrink: 0; }
+    .c-val { font-size: 0.93rem; color: var(--ink2); }
+    .c-val a { color: var(--coral); }
+    .tz-note { display: inline-block; background: var(--coral-lt); border-left: 3px solid var(--coral); padding: 0.75rem 1.1rem; font-size: 0.88rem; color: var(--ink2); border-radius: 0 4px 4px 0; }
+
+    /* FOOTER */
+    footer { padding: 2.5rem 0; border-top: 1px solid var(--rule); }
+    footer p { font-size: 0.78rem; color: var(--mid); letter-spacing: 0.03em; }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+      .menu-btn { display: block; }
+      #home { padding-top: 4rem; padding-bottom: 5rem; }
+      section { padding: 4rem 0; }
+      .skills-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+      .edu-row { flex-direction: column; gap: 0.2rem; }
+      .project-top { flex-direction: column; gap: 0.2rem; }
+    }
+    @media (max-width: 420px) {
+      .skills-grid { grid-template-columns: 1fr; }
+      .hero-name { font-size: 2.6rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-name .hi::after { animation: none; width: 100%; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main navigation">
+  <a href="#home" class="nav-name">
+    Azeezah Agboola<span class="nav-dot" aria-hidden="true"></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+    <svg id="ico-open" width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    <svg id="ico-close" width="22" height="22" viewBox="0 0 22 22" fill="none" style="display:none"><path d="M5 5l12 12M17 5L5 17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+  </button>
+</nav>
+
+<nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#education">Education</a>
+  <a href="#skills">Skills</a>
+  <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<div class="page">
+
+  <section id="home" aria-label="Introduction">
+    <span class="hero-greeting">👋 Hi, I'm</span>
+    <h1 class="hero-name">
+      <span class="hi">Azeezah</span>
+    </h1>
+    <p class="hero-tagline"></p>
+    <p class="hero-sub">
+      EdTech and CS student at Lagos State University. I ask questions, analyze data, and build simple things with code.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-fill">See my work</a>
+      <a href="#contact" class="btn-outline">Get in touch</a>
+    </div>
+  </section>
+
+  <section id="about" aria-label="About">
+    <span class="eyebrow">About</span>
+    <p>
+I'm currently a student at Lagos State University, studying Educational Technology with a minor in Computer Science. I'm interested in forecasting, data analysis, and how technology shapes learning.<br><br>
+
+Here are some things I've been working with:<br>
+🟠Google Sheets <br>
+🟠HTML/CSS<br>
+🟠Git<br>
+🟠Currently learning: Python, JavaScript<br><br>
+In my free time, I'm exploring probabilistic forecasting, reading about AI and education, and building simple websites for fun</p>
+  </section>
+
+  <section id="education" aria-label="Education">
+    <span class="eyebrow">Education</span>
+    <div class="edu-row">
+      <div>
+        <p class="edu-degree">B.Sc. Educational Technology</p>
+        <p class="edu-school">Lagos State University (LASU) · Computer Science Minor</p>
+      </div>
+      <p class="edu-year">Expected 2027</p>
+    </div>
+    <span class="cw-label">Relevant Coursework</span>
+    <div class="pills">
+      <span class="pill">Statistics</span>
+      <span class="pill">Research Methods</span>
+      <span class="pill">AI &amp; Machine Learning</span>
+      <span class="pill">Data Literacy</span>
+      <span class="pill">Programming</span>
+    </div>
+  </section>
+
+  <section id="skills" aria-label="Technical Skills">
+    <span class="eyebrow">Skills</span>
+    <div class="skills-grid">
+      <div class="sk-col">
+        <span class="sk-title">Spreadsheets</span>
+        <ul>
+          <li>Google Sheets</li>
+          <li>VLOOKUP &amp; SUMIF</li>
+          <li>Data cleaning</li>
+        </ul>
+      </div>
+      <div class="sk-col">
+        <span class="sk-title">Research</span>
+        <ul>
+          <li>Survey design</li>
+          <li>Google Forms</li>
+          <li>Probabilistic forecasting</li>
+        </ul>
+      </div>
+      <div class="sk-col">
+        <span class="sk-title">Development</span>
+        <ul>
+          <li>HTML &amp; CSS</li>
+          <li>Git</li>
+        </ul>
+      </div>
+    </div>
+    <p class="skills-note">Currently learning: Python &amp; JavaScript</p>
+  </section>
+
+  <section id="projects" aria-label="Projects">
+    <span class="eyebrow">Projects</span>
+
+    <article class="project">
+      <div class="project-top">
+        <h3 class="project-name">Metaculus Forecasting</h3>
+        <span class="project-yr">Ongoing</span>
+      </div>
+      <p class="project-desc">Exploring probabilistic forecasting through Metaculus. Made a few predictions so far and learning how calibration works.</p>
+    </article>
+
+    <article class="project">
+      <div class="project-top">
+        <h3 class="project-name">Global Temperature Analysis</h3>
+        <span class="project-yr">2025</span>
+      </div>
+      <p class="project-desc">Practiced data analysis using NASA temperature data in Google Sheets. Ran basic statistics—mean, standard deviation, correlation, and found a strong relationship (r = 0.88) between year and temperature.</p>
+    </article>
+
+
+
+
+
+    
+    <article class="project">
+      <div class="project-top">
+        <h3 class="project-name">Personal Portfolio Website</h3>
+        <span class="project-yr">2026</span>
+      </div>
+      <p class="project-desc">Built this website using HTML and CSS. Hosted on GitHub Pages.</p>
+    </article>
+    
+
+  </section>
+
+  <section id="contact" aria-label="Contact">
+    <span class="eyebrow-contact">Contact</span>
+    <p class="contact-intro">Interested in forecasting, data analysis, and building things with code</p>
+    <div class="contact-list">
+      <div class="c-row">
+        <span class="c-label">Email</span>
+        <span class="c-val"><a href="mailto:azeezah.agboola21@gmail.com">azeezah.agboola21@gmail.com</a></span>
+      </div>
+      <div class="c-row">
+        <span class="c-label">GitHub</span>
+        <span class="c-val"><a href="https://github.com/[username]" target="_blank" rel="noopener">github.com/[username]</a></span>
+      </div>
+    </div>
+    <p class="tz-note">Time Zone: WAT (GMT+1) — flexible to accommodate EST meeting times.</p>
+  </section>
+
+  <footer>
+    <p>© 2026 Azeezah Agboola.</p>
+  </footer>
+
+</div>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  const icoOpen = document.getElementById('ico-open');
+  const icoClose = document.getElementById('ico-close');
+
+  menuBtn.addEventListener('click', () => {
+    const isOpen = mobileNav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', isOpen);
+    icoOpen.style.display = isOpen ? 'none' : 'block';
+    icoClose.style.display = isOpen ? 'block' : 'none';
+  });
+
+  mobileNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', false);
+      icoOpen.style.display = 'block';
+      icoClose.style.display = 'none';
+    });
+  });
+</script>
+</body>
+</html>
+
